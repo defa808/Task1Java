@@ -26,9 +26,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="header"><i class="fas fa-plus"></i>
-        </div>
-
+        <div class="header"><i class="fas fa-plus"></i></div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -41,26 +39,28 @@
                 <tbody>
 
                 <c:forEach var="s" items="${salads}">
+
                     <form id="ingredientForm${s.getId()}" action="/loadingredients" method="POST">
 
-                        <tr>
+                        <tr id="th${s.getId()}">
+
                             <td>
-                                <button><i class="fas fa-edit"></i></button>
-                                <button name="btn" value="remove"><i class="fas fa-trash-alt"></i></button>
+                                <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
+                                <i class="fas fa-trash-alt" onclick="removeId(${s.getId()}"></i>
                             </td>
                             <td onclick="loadIngredients(${s.getId()})">
-                                ${s.getTitle()}
+                                    ${s.getTitle()}
                             </td>
                             <td>
-                                ${s.getIngredients().size()}
+                                    ${s.getIngredients().size()}
                             </td>
+
                         </tr>
+                        <input type="hidden" name="id" value="${s.getId()}"/>
 
-
-                        <input type="hidden" name="id" value="${s.getId()}">
-
-                        <br/>
                     </form>
+
+                    <br/>
 
                 </c:forEach>
                 </tbody>
@@ -74,7 +74,19 @@
     <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="header"><i class="fas fa-plus"></i>
         </div>
-        <div id="ingredients"></div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Tools</th>
+                    <th>Name Ingredient</th>
+                    <th>Count Calories</th>
+                </tr>
+                </thead>
+                <tbody id="ingredients">
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </div>
@@ -93,9 +105,40 @@
 
             }
         });
-
-
     }
+
+    function editSalad(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/editSalad',
+            data: $("#ingredientForm" + id).serialize(),
+            success: function (data, textstatus) {
+                if (data != '') {
+                    $("#th" + id).html("");
+                    $("#th" + id).append(data);
+                }
+
+            }
+        });
+    }
+
+//TODO fixed this shit!
+    function editSaladSubmit(id) {
+        console.log($("#ingredientForm" + id).serialize() + $("title"+id).value);
+        $.ajax({
+            type: 'POST',
+            url: '/editSalad',
+            data: $("#ingredientForm" + id).serialize().append($("title"+id)),
+            success: function (data, textstatus) {
+                if (data != '') {
+                    $("#th" + id).html("");
+                    $("#th" + id).append(data);
+                }
+
+            }
+        });
+    }
+
 </script>
 
 </body>

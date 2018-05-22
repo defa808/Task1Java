@@ -20,22 +20,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@WebServlet(name = "TakeSalads", urlPatterns = "/salads")
+@WebServlet(name = "TakeSalad", urlPatterns = "/salads")
 public class TakeSalads extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
-//        request.getRequestDispatcher("index.jsp").forward(request,response);
     }
-
-//    private Question TakeQuestion() {
-//
-//        try {
-//            return DAO.getQuestion(1);
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return new Question(0,"null",0,0,0.0);
-//    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //
@@ -69,8 +58,6 @@ public class TakeSalads extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//        HibernateUtil.shutdown();
 
         request.getRequestDispatcher("Views/salads.jsp").forward(request, response);
 

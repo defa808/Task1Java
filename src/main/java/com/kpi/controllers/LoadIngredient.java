@@ -3,6 +3,7 @@ package com.kpi.controllers;
 import com.kpi.models.Ingredient;
 import com.kpi.models.Salad;
 import com.kpi.service.SaladService;
+import com.kpi.util.HibernateUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +19,8 @@ public class LoadIngredient extends HttpServlet {
         Long saladId = Long.parseLong(request.getParameter("id"));
 
         SaladService saladService = new SaladService();
-        Salad s = null;
         try {
-            s = saladService.getById(saladId);
+            Salad s = saladService.getById(saladId);
             System.out.println(s);
             if (s != null) {
 

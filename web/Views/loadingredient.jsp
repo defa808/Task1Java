@@ -10,10 +10,16 @@
 
 
 <c:forEach var="ingr" items="${currentIngredients}">
-    <div>
-        <i class="fas fa-edit"></i>
-        <i class="fas fa-trash-alt"></i>
-        <span><b>Name: </b>${ingr.getName()}</span>
-        <span><b>Calories: </b>${ingr.getNumberCalories()}</span>
-    </div>
+    <tr>
+        <td>
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+        </td>
+        <td>
+            <span>${ingr.getName()}</span>
+        </td>
+        <td>
+            <span>${ingr.getNumberCalories()}</span>
+        </td>
+    </tr>
 </c:forEach>
