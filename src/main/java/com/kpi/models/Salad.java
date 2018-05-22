@@ -1,9 +1,11 @@
 package com.kpi.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Entity
+@Entity(name="Salad")
 @Table(name = "salads")
 public class Salad{
 
@@ -13,13 +15,18 @@ public class Salad{
     private Long Id;
     private String Title;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "salads_ingredients",
-            joinColumns = @JoinColumn(name = "salad_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredients_id")
-    )
-    private Set<Ingredient> ingredientSet;
+    @ManyToMany(mappedBy = "salads")
+    private Set<Ingredient> ingredientSet = new HashSet<>();
+
+    public void addIngredient(Ingredient tag) {
+        ingredientSet.add(tag);
+        tag.getSalads().add(this);
+    }
+
+    public void removeTag(Ingredient tag) {
+        ingredientSet.remove(tag);
+        tag.getSalads().remove(this);
+    }
 
     public Set<Ingredient> getIngredients() {
         return ingredientSet;
@@ -29,7 +36,7 @@ public class Salad{
         this.ingredientSet = ingredients;
     }
 
-    public String getName() {
+    public String getTitle() {
         return Title;
     }
 
@@ -37,7 +44,7 @@ public class Salad{
         Id = id;
     }
 
-    public void setName(String name) {
+    public void setTitle(String name) {
         this.Title = name;
     }
 
@@ -48,9 +55,9 @@ public class Salad{
     @Override
     public String toString() {
         return "Salad{" +
-                "id=" + Id +
+                "Id=" + Id +
                 ", Title='" + Title + '\'' +
-                ", ingredients="  +
+                ", ingredientSet=" +
                 '}';
     }
 }

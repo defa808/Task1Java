@@ -2,7 +2,9 @@ package com.kpi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name="Ingredient")
@@ -29,8 +31,15 @@ public class Ingredient {
     public Ingredient(){
 
     }
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientSet")
-    private Set<Salad> salads;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "salads_ingredients",
+            joinColumns = @JoinColumn(name = "ingredient_id"),
+            inverseJoinColumns = @JoinColumn(name = "salad_id")
+    )
+    private Set<Salad> salads = new HashSet<>();
 
     public int getId() {
         return Id;

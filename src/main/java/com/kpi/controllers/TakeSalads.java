@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(name = "TakeSalads", urlPatterns = "/salads")
 public class TakeSalads extends HttpServlet {
@@ -41,19 +43,20 @@ public class TakeSalads extends HttpServlet {
         IngredientService ingredientService = new IngredientService();
         TypeIngredientService typeIngredientService = new TypeIngredientService();
 
+
         try {
             List<Salad> salads = saladService.getAll();
             for (Salad s : salads
-                 ) {
-                System.out.println(s);
-            }
-
-            List<TypeIngredient> typeIngredients = typeIngredientService.getAll();
-
-            for (TypeIngredient s : typeIngredients
                     ) {
                 System.out.println(s);
             }
+
+//            List<TypeIngredient> typeIngredients = typeIngredientService.getAll();
+//
+//            for (TypeIngredient s : typeIngredients
+//                    ) {
+//                System.out.println(s);
+//            }
 
             List<Ingredient> ingredients = ingredientService.getAll();
 
@@ -61,15 +64,16 @@ public class TakeSalads extends HttpServlet {
                     ) {
                 System.out.println(s);
             }
-
-
-
-
+            request.setAttribute("salads", salads);
+            request.setAttribute("ingredients", ingredients);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        HibernateUtil.shutdown();
+//        HibernateUtil.shutdown();
+
+        request.getRequestDispatcher("Views/salads.jsp").forward(request, response);
+
 //        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
