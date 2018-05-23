@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -39,10 +40,14 @@ public class CreateSalad extends HttpServlet {
                 ingredientService.update(ingredient);
                 salad.addIngredient(ingredient);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Success</h1>");
 
     }
 
