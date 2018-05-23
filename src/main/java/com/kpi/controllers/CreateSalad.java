@@ -67,18 +67,6 @@ public class CreateSalad extends HttpServlet {
                 resultsMap.put(i.getTypeIngredient().toString(), i);
             }
 
-
-            for (String s:resultsMap.keySet()
-                 ) {
-                System.out.println(s);
-
-                for (Ingredient i: resultsMap.get(s)
-                     ) {
-                    System.out.println(i.toString());
-                }
-
-            }
-
             request.setAttribute("ingrList", resultsMap);
 
             request.getRequestDispatcher("/Views/createsalad.jsp").forward(request, response);
