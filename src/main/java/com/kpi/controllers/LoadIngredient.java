@@ -1,5 +1,7 @@
 package com.kpi.controllers;
 
+import com.kpi.dao.DaoFactory;
+import com.kpi.dao.SaladDAO;
 import com.kpi.models.Ingredient;
 import com.kpi.models.Salad;
 import com.kpi.service.SaladService;
@@ -16,8 +18,10 @@ import java.sql.SQLException;
 @WebServlet(name = "LoadIngredient", urlPatterns = "/loadingredients")
 public class LoadIngredient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DaoFactory daoFactory = new DaoFactory();
+        SaladDAO saladService = daoFactory.getSaladDAO();
+
         Long saladId = Long.parseLong(request.getParameter("id"));
-        SaladService saladService = new SaladService();
 
         try {
             Salad s = saladService.getById(saladId);

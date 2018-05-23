@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <td>
-    <i class="fas fa-check" onclick="editSaladSubmit(${salad.getId()})"></i>
-    <i class="fas fa-times" onclick=""></i>
+    <i class="fas fa-check icon" onclick="editSaladSubmit(${salad.getId()})"></i>
+    <i class="fas fa-times icon" onclick="cancelEditSalad()"></i>
 </td>
 <td>
     <form action="/editSalad" method="post" id="editSaladForm${salad.getId()}">
@@ -39,6 +39,10 @@
                     location.reload();
             }
         });
+    }
+
+    function cancelEditSalad(){
+        location.reload();
     }
 
 

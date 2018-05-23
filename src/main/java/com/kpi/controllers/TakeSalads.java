@@ -1,5 +1,8 @@
 package com.kpi.controllers;
 
+import com.kpi.dao.DaoFactory;
+import com.kpi.dao.IngredientDAO;
+import com.kpi.dao.SaladDAO;
 import com.kpi.models.Ingredient;
 import com.kpi.models.Salad;
 import com.kpi.models.TypeIngredient;
@@ -27,25 +30,22 @@ public class TakeSalads extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SaladService saladService = new SaladService();
-        IngredientService ingredientService = new IngredientService();
+        DaoFactory daoFactory = new DaoFactory();
+        SaladDAO saladService = daoFactory.getSaladDAO();
+        IngredientDAO ingredientService = daoFactory.getIngredientDAO();
 
         try {
             List<Salad> salads = saladService.getAll();
-            for (Salad s : salads
-                    ) {
-                System.out.println(s);
-            }
-
             List<Ingredient> ingredients = ingredientService.getAll();
 
             request.setAttribute("salads", salads);
             request.setAttribute("ingredients", ingredients);
+            request.getRequestDispatcher("Views/salads.jsp").forward(request, response);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        request.getRequestDispatcher("Views/salads.jsp").forward(request, response);
 
     }
 }

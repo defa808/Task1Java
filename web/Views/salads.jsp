@@ -35,7 +35,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="header">
-            <i class="fas fa-plus" onclick="createSalad()"></i>
+            <i class="fas fa-plus icon" onclick="createSalad()"></i>
         </div>
         <div id="newSalad"></div>
         <div class="table-responsive">
@@ -57,8 +57,8 @@
                     <tr id="th${s.getId()}">
 
                         <td>
-                            <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
-                            <i class="fas fa-trash-alt" onclick="removeSaladSubmit(${s.getId()})"></i>
+                            <i class="fas fa-edit icon" onclick="editSalad(${s.getId()})"></i>
+                            <i class="fas fa-trash-alt icon" onclick="removeSaladSubmit(${s.getId()})"></i>
                         </td>
                         <td class="nameSalad" onclick="loadIngredients(${s.getId()})">
                             <form id="saladForm${s.getId()}" action="/loadingredients" method="POST">
