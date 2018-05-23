@@ -39,10 +39,6 @@ public class TakeSalads extends HttpServlet {
 
             List<Ingredient> ingredients = ingredientService.getAll();
 
-            for (Ingredient s : ingredients
-                    ) {
-                System.out.println(s);
-            }
             request.setAttribute("salads", salads);
             request.setAttribute("ingredients", ingredients);
         } catch (SQLException e) {

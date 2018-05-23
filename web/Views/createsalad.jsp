@@ -16,21 +16,24 @@
     <div class="form-group">
         <label for="ingredients">Ingredients:</label>
         <select class="selectpicker" multiple id="ingredients" name="ingredients">
-            <c:forEach var="s" items="${ingredients}">
-                <option value="${s.getId()}">${s.getName()}</option>
+            <c:forEach items="${ingrList.keySet()}" var="key">
+                <optgroup label="${key}" >
+                <c:forEach items="${ingrList.get(key)}" var="i">
+                    <option value="${i.getId()}" }>${i.getName()}</option>
+                </c:forEach>
+                </optgroup>
             </c:forEach>
+
         </select>
 
         <button type="submit" class="btn btn-default">Create Salad</button>
     </div>
 
 
-
-
 </form>
 
 <script>
-    $(document).ready(function(e) {
+    $(document).ready(function (e) {
         $('.selectpicker').selectpicker({
             style: 'btn',
             size: 4

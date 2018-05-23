@@ -8,21 +8,28 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-<c:forEach var="ingr" items="${currentIngredients}">
+<table class="table" id="tableIngredient">
+    <thead>
     <tr>
-        <td>
-            <i class="fas fa-edit"></i>
-            <i class="fas fa-trash-alt"></i>
-        </td>
-        <td>
-            <span>${ingr.getName()}</span>
-        </td>
-        <td>
-            <span>${ingr.getTypeIngredient()}</span>
-        </td>
-        <td>
-            <span>${ingr.getNumberCalories()}</span>
-        </td>
+        <th onclick="sortTable(0, 'tableIngredient')">Name Ingredient</th>
+        <th onclick="sortTable(1, 'tableIngredient')">Type Ingredient</th>
+        <th onclick="sortTable(2, 'tableIngredient')">Count Calories</th>
     </tr>
-</c:forEach>
+    </thead>
+    <tbody>
+    <c:forEach var="ingr" items="${currentIngredients}">
+        <tr>
+            <td>
+                <span>${ingr.getName()}</span>
+            </td>
+            <td>
+                <span>${ingr.getTypeIngredient()}</span>
+            </td>
+            <td>
+                <span>${ingr.getNumberCalories()}</span>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+

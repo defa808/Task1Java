@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../Contents/bootstrap-select.min.css">
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/bootstrap-select.min.js"></script>
-
+    <script src="../Scripts/SortTableScript.js"></script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
             integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
@@ -39,14 +39,14 @@
         </div>
         <div id="newSalad"></div>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="tableSalad">
                 <thead>
                 <tr>
-                    <th>Tools</th>
-                    <th>Name Salad</th>
-                    <th>Count Ingredients</th>
-                    <th>Count calories</th>
-                    <th>Amount price</th>
+                    <th onclick="sortTable(0, 'tableSalad')">Tools</th>
+                    <th onclick="sortTable(1, 'tableSalad')">Name Salad</th>
+                    <th onclick="sortTable(2, 'tableSalad')">Count Ingredients</th>
+                    <th onclick="sortTable(3, 'tableSalad')">Count calories</th>
+                    <th onclick="sortTable(4, 'tableSalad')">Amount price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,7 @@
                             <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
                             <i class="fas fa-trash-alt" onclick="removeSaladSubmit(${s.getId()})"></i>
                         </td>
-                        <td onclick="loadIngredients(${s.getId()})">
+                        <td class="nameSalad" onclick="loadIngredients(${s.getId()})">
                             <form id="saladForm${s.getId()}" action="/loadingredients" method="POST">
                                 <input type="hidden" name="id" value="${s.getId()}"/>
 
@@ -92,21 +92,8 @@
     </div>
 
     <div class="col-sm-12 col-md-6 col-lg-">
-        <div class="header"><i class="fas fa-plus"></i>
-        </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Tools</th>
-                    <th>Name Ingredient</th>
-                    <th>Type Ingredient</th>
-                    <th>Count Calories</th>
-                </tr>
-                </thead>
-                <tbody id="ingredients">
-                </tbody>
-            </table>
+        <div class="table-responsive" id="ingredients">
+
         </div>
 
     </div>

@@ -1,4 +1,9 @@
-td:hover {
+#tableSalad th:hover,#tableSalad .nameSalad:hover  {
+    cursor:pointer;
+    background-color:#eeeeee;
+}
+
+#tableIngredient th:hover{
     cursor:pointer;
     background-color:#eeeeee;
 }

@@ -1,5 +1,7 @@
 package com.kpi.controllers;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 import com.kpi.models.Ingredient;
 import com.kpi.models.Salad;
 import com.kpi.service.IngredientService;
@@ -57,9 +59,29 @@ public class CreateSalad extends HttpServlet {
 
         try {
             List<Ingredient> ingredientList = ingredientService.getAll();
-            request.setAttribute("ingredients", ingredientList);
 
-            request.getRequestDispatcher("Views/createsalad.jsp").forward(request, response);
+            ListMultimap<String, Ingredient> resultsMap = ArrayListMultimap.create();
+
+            for (Ingredient i:ingredientList
+                 ) {
+                resultsMap.put(i.getTypeIngredient().toString(), i);
+            }
+
+
+            for (String s:resultsMap.keySet()
+                 ) {
+                System.out.println(s);
+
+                for (Ingredient i: resultsMap.get(s)
+                     ) {
+                    System.out.println(i.toString());
+                }
+
+            }
+
+            request.setAttribute("ingrList", resultsMap);
+
+            request.getRequestDispatcher("/Views/createsalad.jsp").forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();

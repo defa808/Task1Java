@@ -22,12 +22,8 @@ public class LoadIngredient extends HttpServlet {
         try {
             Salad s = saladService.getById(saladId);
             if (s != null) {
-
-                for (Ingredient ing : s.getIngredients()
-                        ) {
-
-                }
                 request.setAttribute("currentIngredients", s.getIngredients());
+                request.setAttribute("salad", s);
                 request.getRequestDispatcher("Views/loadingredient.jsp").forward(request, response);
             }
         }
