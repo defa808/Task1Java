@@ -32,15 +32,4 @@
 
 </form>
 
-<script>
-    $(document).ready(function (e) {
-        $('.selectpicker').selectpicker({
-            style: 'btn',
-            size: 4
-        });
-        $('inpuut').selectpicker({
-            size: 10
-        });
-
-    });
-</script>
+<script src="../Scripts/createSalad.js"></script>
