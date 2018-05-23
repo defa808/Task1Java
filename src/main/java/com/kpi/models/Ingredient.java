@@ -32,14 +32,23 @@ public class Ingredient {
 
     }
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.ALL
     })
     @JoinTable(name = "salads_ingredients",
             joinColumns = @JoinColumn(name = "ingredient_id"),
             inverseJoinColumns = @JoinColumn(name = "salad_id")
     )
     private Set<Salad> salads = new HashSet<>();
+
+    public void addSalad(Salad tag) {
+        salads.add(tag);
+        tag.getIngredients().add(this);
+    }
+
+    public void removeTag(Salad tag) {
+        salads.remove(tag);
+        tag.getIngredients().remove(this);
+    }
 
     public int getId() {
         return Id;

@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="../Contents/bootstrap.min.css">
     <link rel="stylesheet" href="../Contents/salad.css">
     <script src="../Scripts/jquery.js"></script>
+
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="../Contents/bootstrap-select.min.css">
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/bootstrap-select.min.js"></script>
+
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
             integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
             crossorigin="anonymous"></script>
@@ -26,7 +34,10 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="header"><i class="fas fa-plus"></i></div>
+        <div class="header">
+            <i class="fas fa-plus" onclick="createSalad()"></i>
+        </div>
+        <div id="newSalad"></div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -116,6 +127,19 @@
         });
     }
 
+    function createSalad(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/createSalad',
+            success: function (data, textstatus) {
+                if (data !== '') {
+                    $("#newSalad").html("").append(data);
+                }
+
+            }
+        });
+    }
+
     function editSalad(id) {
         $.ajax({
             type: 'GET',
@@ -142,6 +166,8 @@
             });
         }
     }
+
+
 
 
 </script>

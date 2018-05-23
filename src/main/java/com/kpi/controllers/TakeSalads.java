@@ -27,11 +27,8 @@ public class TakeSalads extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
         SaladService saladService = new SaladService();
         IngredientService ingredientService = new IngredientService();
-        TypeIngredientService typeIngredientService = new TypeIngredientService();
-
 
         try {
             List<Salad> salads = saladService.getAll();
@@ -39,13 +36,6 @@ public class TakeSalads extends HttpServlet {
                     ) {
                 System.out.println(s);
             }
-
-//            List<TypeIngredient> typeIngredients = typeIngredientService.getAll();
-//
-//            for (TypeIngredient s : typeIngredients
-//                    ) {
-//                System.out.println(s);
-//            }
 
             List<Ingredient> ingredients = ingredientService.getAll();
 
@@ -61,6 +51,5 @@ public class TakeSalads extends HttpServlet {
 
         request.getRequestDispatcher("Views/salads.jsp").forward(request, response);
 
-//        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

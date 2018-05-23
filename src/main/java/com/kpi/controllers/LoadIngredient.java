@@ -17,16 +17,14 @@ import java.sql.SQLException;
 public class LoadIngredient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long saladId = Long.parseLong(request.getParameter("id"));
-
         SaladService saladService = new SaladService();
+
         try {
             Salad s = saladService.getById(saladId);
-            System.out.println(s);
             if (s != null) {
 
                 for (Ingredient ing : s.getIngredients()
                         ) {
-                    System.out.println(ing);
 
                 }
                 request.setAttribute("currentIngredients", s.getIngredients());

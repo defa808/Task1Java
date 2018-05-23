@@ -15,7 +15,7 @@
 <td>
     <form action="/editSalad" method="post" id="editSaladForm${salad.getId()}">
         <input type="hidden" name="id" value="${salad.getId()}"/>
-        <input id="title${salad.getId()}" type="text" name="title" value="${salad.getTitle()}"/>
+        <input type="text" name="title" value="${salad.getTitle()}"/>
 
     </form>
 
