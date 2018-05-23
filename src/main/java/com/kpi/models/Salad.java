@@ -52,6 +52,14 @@ public class Salad{
         return Id;
     }
 
+    public double countAndGetTotalPrice(){
+        return this.getIngredients().stream().mapToDouble(Ingredient::getPrice).sum();
+    }
+
+    public double countAndGetTotalCalories(){
+       return  this.getIngredients().stream().mapToDouble(Ingredient::getNumberCalories).sum();
+    }
+
     @Override
     public String toString() {
         return "Salad{" +

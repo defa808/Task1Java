@@ -21,7 +21,13 @@
 
 </td>
 <td>
-    <span>${salad.getIngredients().size()}</span>
+    ${salad.getIngredients().size()}
+</td>
+<td>
+    ${salad.countAndGetTotalCalories()}
+</td>
+<td>
+    ${salad.countAndGetTotalPrice()}
 </td>
 <script>
     function editSaladSubmit(id) {

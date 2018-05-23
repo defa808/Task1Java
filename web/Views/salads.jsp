@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="header"><i class="fas fa-plus"></i></div>
         <div class="table-responsive">
             <table class="table">
@@ -34,6 +34,8 @@
                     <th>Tools</th>
                     <th>Name Salad</th>
                     <th>Count Ingredients</th>
+                    <th>Count calories</th>
+                    <th>Amount price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +60,12 @@
                         <td>
                                 ${s.getIngredients().size()}
                         </td>
-
+                        <td>
+                                ${s.countAndGetTotalCalories()}
+                        </td>
+                        <td>
+                                ${s.countAndGetTotalPrice()}
+                        </td>
                     </tr>
 
 
@@ -73,7 +80,7 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="header"><i class="fas fa-plus"></i>
         </div>
         <div class="table-responsive">
@@ -82,6 +89,7 @@
                 <tr>
                     <th>Tools</th>
                     <th>Name Ingredient</th>
+                    <th>Type Ingredient</th>
                     <th>Count Calories</th>
                 </tr>
                 </thead>

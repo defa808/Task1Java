@@ -19,6 +19,9 @@
             <span>${ingr.getName()}</span>
         </td>
         <td>
+            <span>${ingr.getTypeIngredient()}</span>
+        </td>
+        <td>
             <span>${ingr.getNumberCalories()}</span>
         </td>
     </tr>
