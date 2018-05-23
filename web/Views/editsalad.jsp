@@ -13,8 +13,25 @@
     <i class="fas fa-times"></i>
 </td>
 <td>
-    <input id="title${salad.getId()}" type="text" name="title" value="${salad.getTitle()}"/>
+    <form action="/editSalad" method="post" id="editSaladForm${salad.getId()}">
+        <input type="hidden" name="id" value="${salad.getId()}"/>
+        <input id="title${salad.getId()}" type="text" name="title" value="${salad.getTitle()}"/>
+
+    </form>
+
 </td>
 <td>
     <span>${salad.getIngredients().size()}</span>
 </td>
+<script>
+    function editSaladSubmit(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/editSalad',
+            data: $("#editSaladForm" + id).serialize(),
+            success: function (data) {
+                    location.reload();
+            }
+        });
+    }
+</script>

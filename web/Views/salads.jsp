@@ -40,25 +40,27 @@
 
                 <c:forEach var="s" items="${salads}">
 
-                    <form id="ingredientForm${s.getId()}" action="/loadingredients" method="POST">
 
-                        <tr id="th${s.getId()}">
+                    <tr id="th${s.getId()}">
 
-                            <td>
-                                <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
-                                <i class="fas fa-trash-alt" onclick="removeId(${s.getId()}"></i>
-                            </td>
-                            <td onclick="loadIngredients(${s.getId()})">
+                        <td>
+                            <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
+                            <i class="fas fa-trash-alt" onclick="removeId(${s.getId()}"></i>
+                        </td>
+                        <td onclick="loadIngredients(${s.getId()})">
+                            <form id="saladForm${s.getId()}" action="/loadingredients" method="POST">
+                                <input type="hidden" name="id" value="${s.getId()}"/>
+
                                     ${s.getTitle()}
-                            </td>
-                            <td>
-                                    ${s.getIngredients().size()}
-                            </td>
+                            </form>
 
-                        </tr>
-                        <input type="hidden" name="id" value="${s.getId()}"/>
+                        </td>
+                        <td>
+                                ${s.getIngredients().size()}
+                        </td>
 
-                    </form>
+                    </tr>
+
 
                     <br/>
 
@@ -96,11 +98,10 @@
         $.ajax({
             type: 'POST',
             url: '/loadingredients',
-            data: $("#ingredientForm" + id).serialize(),
+            data: $("#saladForm" + id).serialize(),
             success: function (data, textstatus) {
-                if (data != '') {
-                    $("#ingredients").html("");
-                    $("#ingredients").append(data);
+                if (data !== '') {
+                    $("#ingredients").html("").append(data);
                 }
 
             }
@@ -111,33 +112,17 @@
         $.ajax({
             type: 'GET',
             url: '/editSalad',
-            data: $("#ingredientForm" + id).serialize(),
+            data: $("#saladForm" + id).serialize(),
             success: function (data, textstatus) {
-                if (data != '') {
-                    $("#th" + id).html("");
-                    $("#th" + id).append(data);
+                if (data !== '') {
+                    $("#th" + id).html("").append(data);
                 }
 
             }
         });
     }
 
-//TODO fixed this shit!
-    function editSaladSubmit(id) {
-        console.log($("#ingredientForm" + id).serialize() + $("title"+id).value);
-        $.ajax({
-            type: 'POST',
-            url: '/editSalad',
-            data: $("#ingredientForm" + id).serialize().append($("title"+id)),
-            success: function (data, textstatus) {
-                if (data != '') {
-                    $("#th" + id).html("");
-                    $("#th" + id).append(data);
-                }
 
-            }
-        });
-    }
 
 </script>
 

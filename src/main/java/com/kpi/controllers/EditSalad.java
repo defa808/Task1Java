@@ -18,14 +18,11 @@ public class EditSalad extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         SaladService saladService = new SaladService();
-        System.out.println(request.getParameter("title"));
-
         Long saladId = Long.parseLong(request.getParameter("id"));
-
-        String newTitle = (String)request.getParameter("title");
+        String newTitle = request.getParameter("title");
 
         if(newTitle.isEmpty())
-            request.getRequestDispatcher("Views/salads").forward(request,response);
+            request.getRequestDispatcher("/salads").forward(request,response);
 
         try {
             Salad s = saladService.getById(saladId);
@@ -36,7 +33,6 @@ public class EditSalad extends HttpServlet {
             }
 
             saladService.update(s);
-            request.getRequestDispatcher("Views/salads").forward(request,response);
         }
         catch (SQLException e)
         {
