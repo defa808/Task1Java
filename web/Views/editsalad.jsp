@@ -10,7 +10,7 @@
 
 <td>
     <i class="fas fa-check" onclick="editSaladSubmit(${salad.getId()})"></i>
-    <i class="fas fa-times"></i>
+    <i class="fas fa-times" onclick=""></i>
 </td>
 <td>
     <form action="/editSalad" method="post" id="editSaladForm${salad.getId()}">
@@ -40,4 +40,7 @@
             }
         });
     }
+
+
+
 </script>

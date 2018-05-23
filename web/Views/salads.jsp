@@ -47,7 +47,7 @@
 
                         <td>
                             <i class="fas fa-edit" onclick="editSalad(${s.getId()})"></i>
-                            <i class="fas fa-trash-alt" onclick="removeId(${s.getId()}"></i>
+                            <i class="fas fa-trash-alt" onclick="removeSaladSubmit(${s.getId()})"></i>
                         </td>
                         <td onclick="loadIngredients(${s.getId()})">
                             <form id="saladForm${s.getId()}" action="/loadingredients" method="POST">
@@ -80,7 +80,7 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="col-sm-12 col-md-6 col-lg-">
         <div class="header"><i class="fas fa-plus"></i>
         </div>
         <div class="table-responsive">
@@ -130,6 +130,18 @@
         });
     }
 
+    function removeSaladSubmit(id) {
+        if(confirm('Sure?')) {
+            $.ajax({
+                type: 'POST',
+                url: '/removeSalad',
+                data: $("#saladForm" + id).serialize(),
+                success: function (data, textstatus) {
+                    location.reload();
+                }
+            });
+        }
+    }
 
 
 </script>
